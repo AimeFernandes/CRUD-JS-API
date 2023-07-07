@@ -264,7 +264,7 @@
     
         }
     
-        function removerDados(dados,index) {
+        function removerDados(index) {
           const modalRemover = new bootstrap.Modal('#modalRemover');
           modalRemover.show();
           const btnRemover = document.querySelector("#remover");
@@ -273,9 +273,11 @@
             modalRemover.hide();
             exibirDados(agenda);
           });
+
         }
     
-        function editarDados(dados,index) {
+        function editarDados(index) {
+            console.log("estou aqui")
           const editQuantidade = document.querySelector("#editQuantidade");
           const editNome = document.querySelector("#editNome");
           const editTelefone = document.querySelector("#editTelefone");
@@ -294,7 +296,7 @@
               telefone: editTelefone.value
             };
             agenda[index] = dado;
-            exibirDados(agenda,);
+            exibirDados(agenda,index);
             modalEditar.hide();
           })
         }

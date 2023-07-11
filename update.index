@@ -144,7 +144,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header"style="background-color: rgb(54, 54, 136);border-color:black;color:antiquewhite">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Realizar Pedido</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Produto</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -157,14 +157,14 @@
   
     <div class="modal-body" style="background-color: rgb(54, 54, 136);border-color:black;color:antiquewhite">
         <div class="d-flex align-items-center" >
-            <label for="inputNome" class="form-label"style="margin: 10px;">Produto:</label>
-            <input type="text" class="form-control" id="inputNome">
+            <label for="inputProduto" class="form-label"style="margin: 10px;">Produto:</label>
+            <input type="text" class="form-control" id="inputProduto">
         </div>
     </div>
 
     <div class="d-flex align-items-center" style="background-color: rgb(54, 54, 136);border-color:black;color:antiquewhite">
-        <label for="inputTelefone" class="form-label" style="margin: 10px;">Preço:</label>
-        <input type="text" class="form-control" id="inputTelefone">
+        <label for="inputPreço" class="form-label" style="margin: 10px;">Preço:</label>
+        <input type="text" class="form-control" id="inputPreço">
     </div>
 
     <div class="d-flex align-items-center" style="background-color: rgb(54, 54, 136);border-color:black;color:antiquewhite">
@@ -217,12 +217,12 @@
         </div>
     <div class="modal-body" style="background-color: rgb(54, 54, 136);border-color:black;color:antiquewhite; margin: 10px;">
         <div class="d-flex align-items-center" style="background-color: rgb(54, 54, 136);border-color:black;color:antiquewhite; margin:10px">
-        <label for="editNome" class="form-label" style="margin:10px">Produto:</label>
-        <input type="text" class="form-control" id="editNome">
+        <label for="editProduto" class="form-label" style="margin:10px">Produto:</label>
+        <input type="text" class="form-control" id="editProduto">
     </div>
     <div class="d-flex align-items-center" style="background-color: rgb(54, 54, 136);border-color:black;color:antiquewhite; margin:10px">
-        <label for="editTelefone" class="form-label" style="margin:10px">Preço:</label>
-        <input type="text" class="form-control" id="editTelefone">
+        <label for="editPreço" class="form-label" style="margin:10px">Preço:</label>
+        <input type="text" class="form-control" id="editPreço">
     </div>
     <div class="d-flex align-items-center" style="background-color: rgb(54, 54, 136);border-color:black;color:antiquewhite; margin:10px">
       <label for="editDescrição" class="form-label" style="margin:10px">Descrição:</label>
@@ -244,13 +244,13 @@
       getDados();
       async function cadastrar() {
         const inputQuantidade = document.querySelector("#inputQuantidade");
-        const inputNome = document.querySelector("#inputNome");
-        const inputTelefone = document.querySelector("#inputTelefone");
+        const inputProduto = document.querySelector("#inputProduto");
+        const inputPreço = document.querySelector("#inputPreço");
         const inputDescrição = document.querySelector('#inputDescrição');
         const dados = {
           quantidade: inputQuantidade.value,
-          nome: inputNome.value,
-          telefone: inputTelefone.value,
+          produto: inputProduto.value,
+          preco: inputPreço.value,
           descrição: inputDescrição.value
         }
   
@@ -267,8 +267,8 @@
         }
   
         //Limpar dados
-        inputNome.value = "";
-        inputTelefone.value = "";
+        inputProduto.value = "";
+        inputPreço.value = "";
         inputQuantidade.value = "";
         inputDescrição.value = "";
 
@@ -289,8 +289,8 @@
           linhas += `<tr>
               <td>${index + 1}</td>
               <td>${dado.quantidade}</td>
-              <td>${dado.nome}</td>
-              <td>${dado.telefone}</td>
+              <td>${dado.produto}</td>
+              <td>${dado.preco}</td>
               <td>${dado.descrição}</td>
               <td><i class="bi bi-pencil-square" style="cursor: pointer" onclick="editarDados(${dado.id})"></i></td>
               <td><i class="bi bi-trash" style="cursor: pointer" onclick="removerDados(${dado.id})"></i></td>
@@ -362,16 +362,16 @@
   
       async function editarDados(index) {
         const editQuantidade = document.querySelector("#editQuantidade");
-        const editNome = document.querySelector("#editNome");
-        const editTelefone = document.querySelector("#editTelefone");
+        const editProduto = document.querySelector("#editProduto");
+        const editPreço = document.querySelector("#editPreço");
         const editDescrição = document.querySelector("#editDescrição");
         try {
           const response = await fetch(baseUrl + "/users/20201214010017/products/" + index);
           const data = await response.json();
 
           editQuantidade.value = data.quantidade;
-          editNome.value = data.nome;
-          editTelefone.value = data.telefone;
+          editProduto.value = data.produto;
+          editPreço.value = data.preco;
           editDescrição.value = data.descrição;
 
         } catch (error) {
@@ -385,8 +385,8 @@
         editar.addEventListener("click", async () => {
           const dado = {
             quantidade: editQuantidade.value,
-            nome: editNome.value,
-            telefone: editTelefone.value,
+            produto: editProduto.value,
+            preco: editPreço.value,
             descrição: editDescrição.value
           };
           try {
